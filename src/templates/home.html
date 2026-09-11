@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <p>Welcome to the home page!</p>
-    {{ querysets }}
+    <p>{{ page_title }}</p>
+    <p> page visits: {{ querysets }}</p>
+    <p> percent: {{ percent }}</p>
 {% endblock %}

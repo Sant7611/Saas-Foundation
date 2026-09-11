@@ -5,14 +5,24 @@ from visits.models import PageVisits
 
 
 
-def home_view(request):
-    page_title = "Home Page"
+def home_view(request, *args, **kwargs):
+    return about_view(request, *args, **kwargs)
+
+
+def about_view(request, *args, **kwargs):
+    qs=PageVisits.objects.all()
     path = request.path
-    PageVisits.objects.create(path=path)
     querysets = PageVisits.objects.filter(path=path)
+    try:
+        percent = (querysets.count() * 100.0)/qs.count()
+    except:
+        percent = 0
+    
     context ={
-        'page_title': page_title,
-        'querysets':querysets.count()
+        'page_title': "Home Page",
+        'querysets':querysets.count(),
+        'percent':percent
     }
+    PageVisits.objects.create(path=path)
     
     return render(request, 'home.html', context)

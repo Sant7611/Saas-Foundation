@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <p>{{ page_title }}</p>
+    <p> page visits: {{ querysets }}</p>
+    <p> percent: {{ percent }}</p>
+{% endblock %}
